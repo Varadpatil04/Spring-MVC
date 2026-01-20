@@ -1,6 +1,5 @@
 package Spring.MVC.demo.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MyController {
@@ -15,6 +14,21 @@ public class MyController {
         return new Users(1,"Varad");
     }
 
+    @PostMapping("/getName/{id}")
+    public String getName(@PathVariable int id){
+        return "Varad" + id;
+    }
+
+    @PostMapping("/getAge")
+    public String getAge(@RequestParam int id){
+        return "Varad" + id;
+    }
+
+    @PostMapping("/getuser")
+    public String getuser(@RequestBody Users user){
+        return "Varad : " + user;
+    }
+
 }
 class Users{
     int age;
@@ -23,6 +37,17 @@ class Users{
     public Users(int age, String name) {
         this.age = age;
         this.name = name;
+    }
+
+    public Users() {
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public int getAge() {
