@@ -1,4 +1,6 @@
 package Spring.MVC.demo.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,13 +22,14 @@ public class MyController {
     }
 
     @PostMapping("/getAge")
-    public String getAge(@RequestParam int id){
-        return "Varad" + id;
+    public ResponseEntity<String> getAge(@RequestParam int id){
+        String a  = "Varad " + id;
+        return new ResponseEntity<>(a,HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/getuser")
-    public String getuser(@RequestBody Users user){
-        return "Varad : " + user;
+    public ResponseEntity<Users> getuser(@RequestBody Users user){
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
 }
